@@ -5,4 +5,5 @@
 ## https://github.com/BradenCradock/nand2tetris
 ---
 
-- [ ] (2024/4/18 14:00 - ) 
+- [ ] (2024/4/18 14:00 - 16:30) coursera: Module 0: Introduction Roadmap
+- [ ] (4/18 16:30 - ) book: Introduction
