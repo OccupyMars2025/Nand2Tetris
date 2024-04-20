@@ -11,4 +11,3 @@
 - [x] (4/18 16:30 - 4/19 10:30) book: (page 1-33) introduction to the hardware part
 - [ ] (4/19 10:30 - ) (coursera)Module 1: Boolean Functions and Gate Logic Roadmap,  (book)Chapter 1: Boolean Logic
 
-# Project 1: stop at page 50, Mux16
