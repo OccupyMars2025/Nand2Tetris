@@ -4,6 +4,7 @@
 ## https://www.nand2tetris.org/
 ## [Nand2Tetris Questions and Answers Forum](http://nand2tetris-questions-and-answers-forum.52.s1.nabble.com/)
 ## https://github.com/BradenCradock/nand2tetris
+## [The Hack computer from nand2tetris on breadboards](https://hackaday.io/project/185131-the-hack-computer-from-nand2tetris-on-breadboards)
 ---
 
 - [x] (2024/4/18 14:00 - 16:30) coursera: Module 0: Introduction Roadmap
