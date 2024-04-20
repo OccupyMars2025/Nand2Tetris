@@ -6,11 +6,91 @@
  * 16-bit multiplexor: 
  * for i = 0, ..., 15:
  * if (sel = 0) out[i] = a[i], else out[i] = b[i]
+
+ out[i] = Not(sel) * a[i] + sel * b[i]
  */
 CHIP Mux16 {
     IN a[16], b[16], sel;
     OUT out[16];
 
     PARTS:
-    //// Replace this comment with your code.
+    Not(in=sel, out=notSel0);
+    And(a=notSel0, b=a[0], out=w00);
+    And(a=sel, b=b[0], out=w10);
+    Or(a=w00, b=w10, out=out[0]);
+
+    Not(in=sel, out=notSel1);
+    And(a=notSel1, b=a[1], out=w01);
+    And(a=sel, b=b[1], out=w11);
+    Or(a=w01, b=w11, out=out[1]);    
+    
+    Not(in=sel, out=notSel2);
+    And(a=notSel2, b=a[2], out=w02);
+    And(a=sel, b=b[2], out=w12);
+    Or(a=w02, b=w12, out=out[2]);
+
+    Not(in=sel, out=notSel3);
+    And(a=notSel3, b=a[3], out=w03);
+    And(a=sel, b=b[3], out=w13);
+    Or(a=w03, b=w13, out=out[3]);
+
+    Not(in=sel, out=notSel4);
+    And(a=notSel4, b=a[4], out=w04);
+    And(a=sel, b=b[4], out=w14);
+    Or(a=w04, b=w14, out=out[4]);
+
+    Not(in=sel, out=notSel5);
+    And(a=notSel5, b=a[5], out=w05);
+    And(a=sel, b=b[5], out=w15);
+    Or(a=w05, b=w15, out=out[5]);
+
+    Not(in=sel, out=notSel6);
+    And(a=notSel6, b=a[6], out=w06);
+    And(a=sel, b=b[6], out=w16);
+    Or(a=w06, b=w16, out=out[6]);
+
+    Not(in=sel, out=notSel7);
+    And(a=notSel7, b=a[7], out=w07);
+    And(a=sel, b=b[7], out=w17);
+    Or(a=w07, b=w17, out=out[7]);
+
+    Not(in=sel, out=notSel8);
+    And(a=notSel8, b=a[8], out=w08);
+    And(a=sel, b=b[8], out=w18);
+    Or(a=w08, b=w18, out=out[8]);
+
+    Not(in=sel, out=notSel9);
+    And(a=notSel9, b=a[9], out=w09);
+    And(a=sel, b=b[9], out=w19);
+    Or(a=w09, b=w19, out=out[9]);
+
+    Not(in=sel, out=notSel10);
+    And(a=notSel10, b=a[10], out=w010);
+    And(a=sel, b=b[10], out=w110);
+    Or(a=w010, b=w110, out=out[10]);
+
+    Not(in=sel, out=notSel11);
+    And(a=notSel11, b=a[11], out=w011);
+    And(a=sel, b=b[11], out=w111);
+    Or(a=w011, b=w111, out=out[11]);
+
+    Not(in=sel, out=notSel12);
+    And(a=notSel12, b=a[12], out=w012);
+    And(a=sel, b=b[12], out=w112);
+    Or(a=w012, b=w112, out=out[12]);
+
+    Not(in=sel, out=notSel13);
+    And(a=notSel13, b=a[13], out=w013);
+    And(a=sel, b=b[13], out=w113);
+    Or(a=w013, b=w113, out=out[13]);
+
+    Not(in=sel, out=notSel14);
+    And(a=notSel14, b=a[14], out=w014);
+    And(a=sel, b=b[14], out=w114);
+    Or(a=w014, b=w114, out=out[14]);
+
+    Not(in=sel, out=notSel15);
+    And(a=notSel15, b=a[15], out=w015);
+    And(a=sel, b=b[15], out=w115);
+    Or(a=w015, b=w115, out=out[15]);
 }

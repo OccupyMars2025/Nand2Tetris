@@ -1,0 +1,13 @@
+// OccupyMars2025 added this file
+/**
+ * And gate:
+ * if (a and b and c) out = 1, else out = 0 
+ */
+CHIP And3Way {
+    IN a, b, c;
+    OUT out;
+    
+    PARTS:
+    And(a=a, b=b, out=w0);
+    And(a=w0, b=c, out=out);
+}

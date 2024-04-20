@@ -6,11 +6,16 @@
  * Demultiplexor:
  * [a, b] = [in, 0] if sel = 0
  *          [0, in] if sel = 1
+
+   a = Not(sel) * in;
+   b = sel * in;
  */
 CHIP DMux {
     IN in, sel;
     OUT a, b;
 
     PARTS:
-    //// Replace this comment with your code.
+    Not(in=sel, out=notsel);
+    And(a=notsel, b=in, out=a);
+    And(a=sel, b=in, out=b);
 }

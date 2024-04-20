@@ -1,0 +1,29 @@
+// OccupyMars2025 added this file
+/**
+ * 8-way multiplexor:
+ * out = a if sel = 000
+ *       b if sel = 001
+ *       c if sel = 010
+ *       d if sel = 011
+ *       e if sel = 100
+ *       f if sel = 101
+ *       g if sel = 110
+ *       h if sel = 111
+
+    if(sel[2] == 0) {
+        out = Mux4Way(a, b, c, d, sel[0..1]);
+    }else {
+        out = Mux4Way(e, f, g, h, sel[0..1]);
+    }
+ */
+CHIP Mux8Way {
+    IN a, b, c, d,
+       e, f, g, h,
+       sel[3];
+    OUT out;
+
+    PARTS:
+    Mux4Way(a=a, b=b, c=c, d=d, sel=sel[0..1], out=w0);
+    Mux4Way(a=e, b=f, c=g, d=h, sel=sel[0..1], out=w1);
+    Mux(a=w0, b=w1, sel=sel[2], out=out);
+}

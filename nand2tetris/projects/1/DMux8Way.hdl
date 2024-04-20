@@ -12,11 +12,30 @@
  *                            [0,  0,  0,  0,  0, in,  0,  0] if sel = 101
  *                            [0,  0,  0,  0,  0,  0, in,  0] if sel = 110
  *                            [0,  0,  0,  0,  0,  0,  0, in] if sel = 111
+ 
+    a = Not(sel[2]) * Not(sel[1]) * Not(sel[0]) * in
+    b = Not(sel[2]) * Not(sel[1]) * (sel[0]) * in
+    c = Not(sel[2]) * (sel[1]) * Not(sel[0]) * in
+    d = Not(sel[2]) * (sel[1]) * (sel[0]) * in
+    e = (sel[2]) * Not(sel[1]) * Not(sel[0]) * in
+    f = (sel[2]) * Not(sel[1]) * (sel[0]) * in
+    g = (sel[2]) * (sel[1]) * Not(sel[0]) * in
+    h = (sel[2]) * (sel[1]) * (sel[0]) * in
  */
 CHIP DMux8Way {
     IN in, sel[3];
     OUT a, b, c, d, e, f, g, h;
 
     PARTS:
-    //// Replace this comment with your code.
+    Not(in=sel[0], out=notSel0);
+    Not(in=sel[1], out=notSel1);
+    Not(in=sel[2], out=notSel2);
+    And4Way(a=notSel2, b=notSel1, c=notSel0, d=in, out=a);
+    And4Way(a=notSel2, b=notSel1, c=sel[0], d=in, out=b);
+    And4Way(a=notSel2, b=sel[1], c=notSel0, d=in, out=c);
+    And4Way(a=notSel2, b=sel[1], c=sel[0], d=in, out=d);
+    And4Way(a=sel[2], b=notSel1, c=notSel0, d=in, out=e);
+    And4Way(a=sel[2], b=notSel1, c=sel[0], d=in, out=f);
+    And4Way(a=sel[2], b=sel[1], c=notSel0, d=in, out=g);
+    And4Way(a=sel[2], b=sel[1], c=sel[0], d=in, out=h);
 }

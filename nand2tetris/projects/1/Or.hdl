@@ -11,5 +11,11 @@ CHIP Or {
     OUT out;
 
     PARTS:
-    //// Replace this comment with your code.
+    /*
+    It seems that the hardware simulator cannot parse
+    the name with "_" , for example not_a, not_b
+    */ 
+    Not(in=a, out=nota); 
+    Not(in=b, out=notb);
+    Nand(a=nota, b=notb, out=out);
 }

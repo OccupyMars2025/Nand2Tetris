@@ -8,11 +8,22 @@
  *                [0, in, 0, 0] if sel = 01
  *                [0, 0, in, 0] if sel = 10
  *                [0, 0, 0, in] if sel = 11
+
+    a = Not(sel[1]) * Not(sel[0]) * in
+    b = Not(sel[1]) * sel[0] * in
+    c = sel[1] * Not(sel[0]) * in
+    d = sel[1] * sel[0] * in
+
  */
 CHIP DMux4Way {
     IN in, sel[2];
     OUT a, b, c, d;
 
     PARTS:
-    //// Replace this comment with your code.
+    Not(in=sel[0], out=notSel0);
+    Not(in=sel[1], out=notSel1);
+    And3Way(a=notSel1, b=notSel0, c=in, out=a);
+    And3Way(a=notSel1, b=sel[0], c=in, out=b);
+    And3Way(a=sel[1], b=notSel0, c=in, out=c);
+    And3Way(a=sel[1], b=sel[0], c=in, out=d);
 }

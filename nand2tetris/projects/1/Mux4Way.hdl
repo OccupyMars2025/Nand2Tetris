@@ -1,0 +1,26 @@
+// OccupyMars2025 added this file
+/**
+ * 4-way multiplexor:
+ * out = a if sel = 00
+ *       b if sel = 01
+ *       c if sel = 10
+ *       d if sel = 11
+
+ out = Not(sel[1]) * Not(sel[0]) * a + 
+       Not(sel[1]) * sel[0] * b + 
+       sel[1] * Not(sel[0]) * c + 
+       sel[1] * sel[0] * d
+ */
+CHIP Mux4Way {
+    IN a, b, c, d, sel[2];
+    OUT out;
+    
+    PARTS:
+    Not(in=sel[0], out=notSel0);
+    Not(in=sel[1], out=notSel1);
+    And3Way(a=notSel1, b=notSel0, c=a, out=w0);
+    And3Way(a=notSel1, b=sel[0], c=b, out=w1);
+    And3Way(a=sel[1], b=notSel0, c=c, out=w2);
+    And3Way(a=sel[1], b=sel[0], c=d, out=w3);
+    Or4Way(in[0]=w0, in[1]=w1, in[2]=w2, in[3]=w3, out=out);
+}

@@ -1,0 +1,14 @@
+// OccupyMars2025 added this file
+/**
+ * And gate:
+ * if (a and b and c and d) out = 1, else out = 0 
+ */
+CHIP And4Way {
+    IN a, b, c, d;
+    OUT out;
+    
+    PARTS:
+    And(a=a, b=b, out=w0);
+    And(a=w0, b=c, out=w1);
+    And(a=w1, b=d, out=out);
+}
