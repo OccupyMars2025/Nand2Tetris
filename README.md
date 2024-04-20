@@ -9,5 +9,6 @@
 
 - [x] (2024/4/18 14:00 - 16:30) coursera: Module 0: Introduction Roadmap
 - [x] (4/18 16:30 - 4/19 10:30) book: (page 1-33) introduction to the hardware part
-- [ ] (4/19 10:30 - ) (coursera)Module 1: Boolean Functions and Gate Logic Roadmap,  (book)Chapter 1: Boolean Logic
+- [x] (4/19 10:30 - 4/20 18:48) chapter 1 + project 1: Boolean Logic
+- [ ] (4/20 18:48 - ) chapter 2:  Boolean Arithmetic
 
