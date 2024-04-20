@@ -4,6 +4,7 @@
 ## https://www.nand2tetris.org/
 ## [Nand2Tetris Questions and Answers Forum](http://nand2tetris-questions-and-answers-forum.52.s1.nabble.com/)
 ## https://github.com/BradenCradock/nand2tetris
+## https://github.com/AllenWrong/nand2tetris
 ## [The Hack computer from nand2tetris on breadboards](https://hackaday.io/project/185131-the-hack-computer-from-nand2tetris-on-breadboards)
 ## [Douban’s reviews on this book](https://book.douban.com/subject/1998341/)
 ---
