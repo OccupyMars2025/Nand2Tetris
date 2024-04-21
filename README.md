@@ -14,5 +14,6 @@
 - [x] (4/18 16:30 - 4/19 10:30) book: (page 1-33) introduction to the hardware part
 - [x] (4/19 10:30 - 4/20 18:48) chapter 1 + project 1: Boolean Logic
 - [x] (4/20 18:48 - 4/21 11:00) chapter 2:  Boolean Arithmetic
-- [ ] (4/21 11:00 - ) project 2:  Boolean Arithmetic
+- [x] (4/21 11:00 - 16:00) project 2:  Boolean Arithmetic
+- [ ] (4/21 16:00 - ) chapter 3: Memory
 
