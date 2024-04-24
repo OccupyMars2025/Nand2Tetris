@@ -17,5 +17,6 @@
 - [x] (4/21 11:00 - 16:00) project 2:  Boolean Arithmetic
 - [x] (4/21 16:00 - 4/22 12:00) chapter 3: Memory
 - [x] (4/22 12:00 - 18:20) project 3: Memory
-- [ ] (4/22 18:20 - ) chapter 4: Machine Language
+- [x] (4/22 18:20 - 4/24 18:00) chapter 4: Machine Language
+- [x] (4/24 18:00 - 21:50) project 4: Machine Language
 
