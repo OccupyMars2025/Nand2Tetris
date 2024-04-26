@@ -1,6 +1,7 @@
 # goal: 2024/4/18 14:00 - 4/30 18:00: complete learning this course
 # We’ll stop here, lest we rob readers of the pleasure of completing the CPU implementation themselves. We hope that as they do so, they will savor the clockwork elegance of the Hack CPU
 ![Hack CPU](https://github.com/OccupyMars2025/Nand2Tetris/assets/31559413/961881e8-cca8-4be6-b6ec-697951be1b5f)
+![Computer](https://github.com/OccupyMars2025/Nand2Tetris/assets/31559413/a3f2fe94-c22a-48a8-a0c4-19c7bd8d818b)
 
 ## [Coursera: Nand2Tetris](https://csdiy.wiki/en/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/N2T/)
 ## [the book: The Elements of Computing Systems : Building a Modern Computer from First Principles, 2nd edition, 2021](https://dokumen.pub/the-elements-of-computing-systems-building-a-modern-computer-from-first-principles-2nbsped-2020002671-9780262539807.html)
