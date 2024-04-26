@@ -1,4 +1,5 @@
 # goal: 2024/4/18 14:00 - 4/30 18:00: complete learning this course
+# We’ll stop here, lest we rob readers of the pleasure of completing the CPU implementation themselves. We hope that as they do so, they will savor the clockwork elegance of the Hack CPU
 ![Hack CPU](https://github.com/OccupyMars2025/Nand2Tetris/assets/31559413/961881e8-cca8-4be6-b6ec-697951be1b5f)
 
 ## [Coursera: Nand2Tetris](https://csdiy.wiki/en/%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/N2T/)
