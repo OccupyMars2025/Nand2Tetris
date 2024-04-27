@@ -23,5 +23,6 @@
 - [x] (4/22 12:00 - 18:20) project 3: Memory
 - [x] (4/22 18:20 - 4/24 18:00) chapter 4: Machine Language
 - [x] (4/24 18:00 - 21:50) project 4: Machine Language
-- [ ] (4/24 21:50 - ) chapter 5: Computer Architecture
+- [X] **(4/24 21:50 - 4/27 11:10) chapter 5: Computer Architecture**
+- [ ] (4/27 11:10 - ) project 5: Computer Architecture
 
