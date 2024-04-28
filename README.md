@@ -25,4 +25,5 @@
 - [x] (4/24 18:00 - 21:50) project 4: Machine Language
 - [X] **(4/24 21:50 - 4/27 11:10) chapter 5: Computer Architecture**
 - [ ] (4/27 11:10 - ) project 5: Computer Architecture
+- [ ] (4/28 7:00 - ) chapter 6: Assembler
 
