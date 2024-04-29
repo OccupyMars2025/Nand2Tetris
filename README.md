@@ -26,6 +26,6 @@
 - [X] **(4/24 21:50 - 4/27 11:10) chapter 5: Computer Architecture**
 - [ ] (4/27 11:10 - ) project 5: Computer Architecture
 - [x] (4/28 7:00 - 4/29 12:00) chapter 6: Assembler
-## From project 6, I start using python to implement the software
+## From project 6, I start using python to implement the software. Finally I start to code using some *practical* programming language. Why don't we just use verilog or chisel to implement the hardware ???
 - [x] (4/29 12:00 - 23:05) project 6: Assembler
 
