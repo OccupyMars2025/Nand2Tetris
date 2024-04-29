@@ -19,11 +19,40 @@
  * map. Access to address 0x6000 results in accessing the keyboard 
  * memory map. The behavior in these addresses is described in the Screen
  * and Keyboard chip specifications given in the lectures and the book.
+ 
+
+address[14] = 0: 0 ~ (16K - 1)
+address[13..14] = 10:  16K ~ (16K + 8K - 1)
+address[13..14] = 11, address[0..12] = 0: 16K + 8K
+
+Caution: address[13..14] = 2 means address[13] is 0, address[14] is 1
  */
 CHIP Memory {
     IN in[16], load, address[15];
     OUT out[16];
 
     PARTS:
-	//// Replace this comment with your code.
+    DMux4Way(in=load, sel=address[13..14], 
+        a=loadRAM16K001, b=loadRAM16K002, c=loadScreen, d=uselessSignal);
+    
+    Or(a=loadRAM16K001, b=loadRAM16K002, out=loadRAM16K);
+
+    Or8Way(in=address[0..7], out=w0);
+    Or(a=w0, b=address[8], out=w1);
+    Or(a=w1, b=address[9], out=w2);
+    Or(a=w2, b=address[10], out=w3);
+    Or(a=w3, b=address[11], out=w4);
+    Or(a=w4, b=address[12], out=w5);
+    Not(in=w5, out=w6);
+    And(a=address[13], b=w6, out=w7);
+    And(a=address[14], b=w7, out=selectKeyboard);
+
+	RAM16K(in=in, load=loadRAM16K, address=address[0..13], out=outRAM16K);
+
+    Screen(in=in, load=loadScreen, address=address[0..12], out=outScreen);
+
+    Keyboard(out=outKeyboard);
+    Mux16(a=false, b=outKeyboard, sel=selectKeyboard, out=outKeyboard002);
+
+    Mux4Way16(a=outRAM16K, b=outRAM16K, c=outScreen, d=outKeyboard002, sel=address[13..14], out=out);
 }

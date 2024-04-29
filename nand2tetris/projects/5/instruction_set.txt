@@ -1,0 +1,19 @@
+zx nx zy ny f no 
+101010   comp=0 
+111111   comp=1
+111010  comp=-1
+001100  comp=D 
+110000  comp=A or M  
+001101  comp=!D 
+110001  comp=!A or !M 
+001111  comp=-D 
+110011  comp=-A or -M 
+011111  comp=D+1
+110111  comp=A+1 or M+1
+001110  comp=D-1
+110010  comp=A-1 or M-1
+000010  comp=D+A or D+M 
+010011  comp=D-A or D-M 
+000111  comp=A-D or M-D 
+000000  comp=D&A or D&M 
+010101  comp=D|A or D|M 
