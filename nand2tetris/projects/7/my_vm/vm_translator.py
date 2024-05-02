@@ -28,6 +28,7 @@ class VMTranslator:
 
 if __name__ == '__main__':
     # python -m my_vm.vm_translator  ./StackArithmetic/SimpleAdd/SimpleAdd.vm
+    # python -m my_vm.vm_translator  ./StackArithmetic/StackTest/StackTest.vm
     import sys
     if len(sys.argv) != 2:
         print('Please provide a VM file.')

@@ -25,6 +25,8 @@ D=M-D
 M=-1
 @END_EQUAL_ID_25
 D;JEQ
+@SP
+A=M-1
 M=0
 (END_EQUAL_ID_25)
 // push constant 17
@@ -52,10 +54,12 @@ D=M
 A=M-1
 D=M-D
 M=-1
-@END_EQUAL_ID_54
+@END_EQUAL_ID_56
 D;JEQ
+@SP
+A=M-1
 M=0
-(END_EQUAL_ID_54)
+(END_EQUAL_ID_56)
 // push constant 16
 @16
 D=A
@@ -81,10 +85,12 @@ D=M
 A=M-1
 D=M-D
 M=-1
-@END_EQUAL_ID_83
+@END_EQUAL_ID_87
 D;JEQ
+@SP
+A=M-1
 M=0
-(END_EQUAL_ID_83)
+(END_EQUAL_ID_87)
 // push constant 892
 @892
 D=A
@@ -110,10 +116,12 @@ D=M
 A=M-1
 D=M-D
 M=-1
-@END_LT_ID_112
+@END_LT_ID_118
 D;JLT
+@SP
+A=M-1
 M=0
-(END_LT_ID_112)
+(END_LT_ID_118)
 // push constant 891
 @891
 D=A
@@ -139,10 +147,12 @@ D=M
 A=M-1
 D=M-D
 M=-1
-@END_LT_ID_141
+@END_LT_ID_149
 D;JLT
+@SP
+A=M-1
 M=0
-(END_LT_ID_141)
+(END_LT_ID_149)
 // push constant 891
 @891
 D=A
@@ -168,10 +178,12 @@ D=M
 A=M-1
 D=M-D
 M=-1
-@END_LT_ID_170
+@END_LT_ID_180
 D;JLT
+@SP
+A=M-1
 M=0
-(END_LT_ID_170)
+(END_LT_ID_180)
 // push constant 32767
 @32767
 D=A
@@ -197,10 +209,12 @@ D=M
 A=M-1
 D=M-D
 M=-1
-@END_GT_ID_199
+@END_GT_ID_211
 D;JGT
+@SP
+A=M-1
 M=0
-(END_GT_ID_199)
+(END_GT_ID_211)
 // push constant 32766
 @32766
 D=A
@@ -226,10 +240,12 @@ D=M
 A=M-1
 D=M-D
 M=-1
-@END_GT_ID_228
+@END_GT_ID_242
 D;JGT
+@SP
+A=M-1
 M=0
-(END_GT_ID_228)
+(END_GT_ID_242)
 // push constant 32766
 @32766
 D=A
@@ -255,10 +271,12 @@ D=M
 A=M-1
 D=M-D
 M=-1
-@END_GT_ID_257
+@END_GT_ID_273
 D;JGT
+@SP
+A=M-1
 M=0
-(END_GT_ID_257)
+(END_GT_ID_273)
 // push constant 57
 @57
 D=A

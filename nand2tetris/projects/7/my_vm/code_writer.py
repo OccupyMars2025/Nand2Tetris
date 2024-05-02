@@ -17,6 +17,7 @@ class CodeWriter:
             self.output.append('A=M\n')
             self.output.append('D=M\n')
             # get the 1st operand from the top of the stack and you can refer to it using the M register
+            # Caution: I actually don't decrease the stack pointer here when getting the 1st operand
             self.output.append('@SP\n')
             self.output.append('A=M-1\n')
         elif command in UNARY_OPEARATORS:
@@ -39,6 +40,11 @@ class CodeWriter:
             current_id_of_eq_command = len(self.output)
             self.output.append(f'@END_EQUAL_ID_{current_id_of_eq_command}\n')
             self.output.append('D;JEQ\n')
+            ## ======== Caution: you need to assign SP-1 to A register "again" in case the A register has been modified by the previous command, 
+            # if the A register has been modified by the previous command, then the M register contains some unkown value, so we need to assign SP-1 to A register again
+            self.output.append('@SP\n')
+            self.output.append('A=M-1\n')
+            ## =========
             self.output.append('M=0\n')
             self.output.append(f'(END_EQUAL_ID_{current_id_of_eq_command})\n')
         elif command == 'gt':
@@ -51,6 +57,11 @@ class CodeWriter:
             current_id_of_gt_command = len(self.output)
             self.output.append(f'@END_GT_ID_{current_id_of_gt_command}\n')
             self.output.append('D;JGT\n')
+            ## ======== Caution: you need to assign SP-1 to A register "again" in case the A register has been modified by the previous command, 
+            # if the A register has been modified by the previous command, then the M register contains some unkown value, so we need to assign SP-1 to A register again
+            self.output.append('@SP\n')
+            self.output.append('A=M-1\n')
+            ## =========
             self.output.append('M=0\n')
             self.output.append(f'(END_GT_ID_{current_id_of_gt_command})\n')
         elif command == 'lt':
@@ -63,6 +74,11 @@ class CodeWriter:
             current_id_of_lt_command = len(self.output)
             self.output.append(f'@END_LT_ID_{current_id_of_lt_command}\n')
             self.output.append('D;JLT\n')
+            ## ======== Caution: you need to assign SP-1 to A register "again" in case the A register has been modified by the previous command, 
+            # if the A register has been modified by the previous command, then the M register contains some unkown value, so we need to assign SP-1 to A register again
+            self.output.append('@SP\n')
+            self.output.append('A=M-1\n')
+            ## =========            
             self.output.append('M=0\n')
             self.output.append(f'(END_LT_ID_{current_id_of_lt_command})\n')
         else:
