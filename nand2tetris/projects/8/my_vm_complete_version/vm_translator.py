@@ -30,6 +30,12 @@ class VMTranslator:
             elif current_command_type == CommandType.C_IF:
                 label = self.parser.arg1()
                 self.code_writer.writeIf(label)
+            elif current_command_type == CommandType.C_FUNCTION:
+                function_name = self.parser.arg1()
+                num_locals = self.parser.arg2()
+                self.code_writer.writeFunction(function_name, num_locals)
+            elif current_command_type == CommandType.C_RETURN:
+                self.code_writer.writeReturn()
             else:
                 raise Exception(f'Not implemeted yet: {current_command}')
         self.code_writer.close()
