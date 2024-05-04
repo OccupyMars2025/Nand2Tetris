@@ -29,5 +29,6 @@
 - [x] (4/29 12:00 - 23:05) project 6: Assembler
 - [x] (4/29 23:05 - 5/1 20:40) chapter 7: Virtual Machine I: Processing
 - [x] (5/1 20:40 - 5/2 19:49) project 7
-- [ ] (5/2 19:49 - ) chapter 8: Virtual Machine II: Control
+- [x] (5/2 19:49 - 5/4 11:14) chapter 8: Virtual Machine II: Control
+- [ ] (5/4 11:14 - ) project 8 
 
