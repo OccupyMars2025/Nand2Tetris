@@ -151,7 +151,7 @@ class CodeWriter:
         I just rely on the assembler to decide where to store the static variable,
         the value you want is in the M register
         """
-        self.output.append(f'@{self._filename_without_extension}.static.{index}\n')
+        self.output.append(f'@{self._filename_without_extension}.{index}\n')
             
     
     def _accessMemoerySegment(self, segment: str, index: int):
@@ -252,7 +252,42 @@ class CodeWriter:
         else:
             raise Exception(f'Unsupported yet: {command} {segment} {index}')
            
-            
+    
+    def writeLabel(self, label: str):
+        """
+        (label)
+        """
+        self.output.append(f"// label {label.split('$')[-1]}\n")
+        self.output.append(f'({label})\n')
+        
+    
+    def writeGoto(self, label: str):
+        """
+        @label
+        0;JMP
+        """
+        self.output.append(f"// goto {label.split('$')[-1]}\n")
+        self.output.append('@' + label + '\n')
+        self.output.append('0;JMP\n')
+        
+    
+    def writeIf(self, label: str):
+        """
+        @SP
+        M=M-1
+        A=M
+        D=M
+        @label
+        D;JNE
+        """
+        self.output.append(f"// if-goto {label.split('$')[-1]}\n")
+        self.output.append('@SP\n')
+        self.output.append('M=M-1\n')
+        self.output.append('A=M\n')
+        self.output.append('D=M\n')
+        self.output.append(f'@{label}\n')
+        self.output.append('D;JNE\n')
+        
             
     def close(self):
         self.output.append('// add an infinite loop to keep the program running\n')

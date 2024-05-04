@@ -1,4 +1,5 @@
 from .utils import *
+import os 
 
 class Parser:
     def __init__(self, file_name: str):
@@ -6,6 +7,8 @@ class Parser:
             self.lines = f.read().split('\n')
         self._currentCommandIndex = 0
         self._currentCommand = None
+        self.file_name_without_extension = os.path.splitext(os.path.basename(file_name))[0]
+        self.function_name = ""
             
     
     def hasMoreLines(self):
@@ -28,23 +31,26 @@ class Parser:
             return CommandType.C_PUSH
         elif self._currentCommand.startswith('pop'):
             return CommandType.C_POP
+        elif self._currentCommand.startswith('label'):
+            return CommandType.C_LABEL
+        elif self._currentCommand.startswith('goto'):
+            return CommandType.C_GOTO
+        elif self._currentCommand.startswith('if-goto'):
+            return CommandType.C_IF
         else:
             raise Exception('Unknown command type')
-        # elif self._currentCommand.startswith('label'):
-        #     return CommandType.C_LABEL
-        # elif self._currentCommand.startswith('goto'):
-        #     return CommandType.C_GOTO
-        # elif self._currentCommand.startswith('if-goto'):
-        #     return CommandType.C_IF
  
 
     def arg1(self) -> str:
         if self.commandType() == CommandType.C_ARITHMETIC:
             return self._currentCommand
         elif self.commandType() in {CommandType.C_PUSH, CommandType.C_POP}:
-            return self._currentCommand.split(' ')[1]
+            return self._currentCommand.split(' ')[1].strip()
         elif self.commandType() == CommandType.C_RETURN:
             raise Exception('Return command does not have an argument')
+        elif self.commandType() in {CommandType.C_LABEL, CommandType.C_GOTO, CommandType.C_IF}:
+            label_string = self._currentCommand.split(' ')[1].strip()
+            return f'{self.file_name_without_extension}.{self.function_name}${label_string}'
         else:
             raise Exception('Unknown command type')
     
