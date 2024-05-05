@@ -1,5 +1,4 @@
 # goal: 2024/4/18 14:00 - 4/30 18:00: complete learning this course
-# We’ll stop here, lest we rob readers of the pleasure of completing the CPU implementation themselves. We hope that as they do so, they will savor the clockwork elegance of the Hack CPU
 ![Hack CPU](https://github.com/OccupyMars2025/Nand2Tetris/assets/31559413/961881e8-cca8-4be6-b6ec-697951be1b5f)
 ![Computer](https://github.com/OccupyMars2025/Nand2Tetris/assets/31559413/a3f2fe94-c22a-48a8-a0c4-19c7bd8d818b)
 
@@ -30,5 +29,6 @@
 - [x] (4/29 23:05 - 5/1 20:40) chapter 7: Virtual Machine I: Processing
 - [x] (5/1 20:40 - 5/2 19:49) project 7
 - [x] (5/2 19:49 - 5/4 11:14) chapter 8: Virtual Machine II: Control
+## Attention: Even if the emulator shows "Comparison ended successfully", it doesn't mean your code is correct. In my case, I have added an infinite loop to the end of the generated assembly code, but it doesn't work, the PC value becomes absurdly large where there is no assembly code. Refer to https://github.com/OccupyMars2025/Nand2Tetris/issues/4
 - [ ] (5/4 11:14 - ) project 8 
 
