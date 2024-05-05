@@ -6,10 +6,9 @@ class Parser:
         with open(file_name, 'r') as f:
             self.lines = f.read().split('\n')
         self._currentCommandIndex = 0
-        self._currentCommand = None
+        self._currentCommand = ''
         self.file_name_without_extension = os.path.splitext(os.path.basename(file_name))[0]
-        self.function_name = ""
-            
+        self.filename_dot_function_name = ''
     
     def hasMoreLines(self):
         return self._currentCommandIndex < len(self.lines)
@@ -38,10 +37,13 @@ class Parser:
         elif self._currentCommand.startswith('if-goto'):
             return CommandType.C_IF
         elif self._currentCommand.startswith('function'):
+            self.filename_dot_function_name = self._currentCommand.split(' ')[1].strip()
             return CommandType.C_FUNCTION
         elif self._currentCommand == 'return':
+            self.filename_dot_function_name = ''
             return CommandType.C_RETURN
         elif self._currentCommand.startswith('call'):
+            self.filename_dot_function_name = self._currentCommand.split(' ')[1].strip()
             return CommandType.C_CALL
         else:
             raise Exception('Unknown command type')
@@ -55,22 +57,19 @@ class Parser:
         elif self.commandType() == CommandType.C_RETURN:
             raise Exception('Return command does not have an argument')
         elif self.commandType() in {CommandType.C_LABEL, CommandType.C_GOTO, CommandType.C_IF}:
-            label_string = self._currentCommand.split(' ')[1].strip()
-            return f'{self.file_name_without_extension}.{self.function_name}${label_string}'
-        elif self.commandType() == CommandType.C_FUNCTION:
-            self.function_name = self._currentCommand.split(' ')[1].strip()
-            return f'{self.file_name_without_extension}.{self.function_name}'
+            return self._currentCommand.split(' ')[1].strip()
+        elif self.commandType() in {CommandType.C_CALL, CommandType.C_FUNCTION}:
+            self.filename_dot_function_name = self._currentCommand.split(' ')[1].strip()
+            return self.filename_dot_function_name
         else:
-            raise Exception('Unknown command type')
+            raise Exception(f'Unknown command type: {self._currentCommand}')
     
     
     def arg2(self) -> int:
         if self.commandType() in {CommandType.C_PUSH, CommandType.C_POP}:
             return int(self._currentCommand.split(' ')[2])
-        elif self.commandType() == CommandType.C_FUNCTION:
+        elif self.commandType() in {CommandType.C_FUNCTION, CommandType.C_CALL}:
             return int(self._currentCommand.split(' ')[2])
-        elif self.commandType() == CommandType.C_CALL:
-            raise Exception('Not implemented yet')
         else:
             raise Exception('There is no second argument for this command')
     

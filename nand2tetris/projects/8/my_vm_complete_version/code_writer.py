@@ -4,9 +4,19 @@ import os
 class CodeWriter:
     def __init__(self, output_file: str):
         self.output_file = output_file
-        # self._filename_without_extension is used in the method _accessStaticSegment()
-        self._filename_without_extension = os.path.splitext(os.path.basename(output_file))[0]
         self.output = []
+        # set SP=261
+        self.output.append('// set SP=261\n')
+        self.output.append('@261\n')
+        self.output.append('D=A\n')
+        self.output.append('@SP\n')
+        self.output.append('M=D\n')
+        # call Sys.init
+        self.output.append('// call Sys.init\n')
+        self.output.append('@Sys.init\n')
+        self.output.append('0;JMP\n')
+        self._filename_dot_function_name = ''
+        self._vm_source_filename_without_extension = ''
 
 
     def writeArithmetic(self, command: str):
@@ -41,7 +51,7 @@ class CodeWriter:
             self.output.append('D=M-D\n')
             self.output.append('M=-1\n')
             current_id_of_eq_command = len(self.output)
-            self.output.append(f'@END_EQUAL_ID_{current_id_of_eq_command}\n')
+            self.output.append(f'@{self._filename_dot_function_name}$END_EQUAL_ID_{current_id_of_eq_command}\n')
             self.output.append('D;JEQ\n')
             ## ======== Caution: you need to assign SP-1 to A register "again" in case the A register has been modified by the previous command, 
             # if the A register has been modified by the previous command, then the M register contains some unkown value, so we need to assign SP-1 to A register again
@@ -49,7 +59,7 @@ class CodeWriter:
             self.output.append('A=M-1\n')
             ## =========
             self.output.append('M=0\n')
-            self.output.append(f'(END_EQUAL_ID_{current_id_of_eq_command})\n')
+            self.output.append(f'({self._filename_dot_function_name}$END_EQUAL_ID_{current_id_of_eq_command})\n')
         elif command == 'gt':
             # if M > D:
             #     M = -1  (-1 means true)
@@ -58,7 +68,7 @@ class CodeWriter:
             self.output.append('D=M-D\n')
             self.output.append('M=-1\n')
             current_id_of_gt_command = len(self.output)
-            self.output.append(f'@END_GT_ID_{current_id_of_gt_command}\n')
+            self.output.append(f'@{self._filename_dot_function_name}$END_GT_ID_{current_id_of_gt_command}\n')
             self.output.append('D;JGT\n')
             ## ======== Caution: you need to assign SP-1 to A register "again" in case the A register has been modified by the previous command, 
             # if the A register has been modified by the previous command, then the M register contains some unkown value, so we need to assign SP-1 to A register again
@@ -66,7 +76,7 @@ class CodeWriter:
             self.output.append('A=M-1\n')
             ## =========
             self.output.append('M=0\n')
-            self.output.append(f'(END_GT_ID_{current_id_of_gt_command})\n')
+            self.output.append(f'({self._filename_dot_function_name}$END_GT_ID_{current_id_of_gt_command})\n')
         elif command == 'lt':
             # if M < D:
             #     M = -1  (-1 means true)
@@ -75,7 +85,7 @@ class CodeWriter:
             self.output.append('D=M-D\n')
             self.output.append('M=-1\n')
             current_id_of_lt_command = len(self.output)
-            self.output.append(f'@END_LT_ID_{current_id_of_lt_command}\n')
+            self.output.append(f'@{self._filename_dot_function_name}$END_LT_ID_{current_id_of_lt_command}\n')
             self.output.append('D;JLT\n')
             ## ======== Caution: you need to assign SP-1 to A register "again" in case the A register has been modified by the previous command, 
             # if the A register has been modified by the previous command, then the M register contains some unkown value, so we need to assign SP-1 to A register again
@@ -83,7 +93,7 @@ class CodeWriter:
             self.output.append('A=M-1\n')
             ## =========            
             self.output.append('M=0\n')
-            self.output.append(f'(END_LT_ID_{current_id_of_lt_command})\n')
+            self.output.append(f'({self._filename_dot_function_name}$END_LT_ID_{current_id_of_lt_command})\n')
         else:
             raise Exception(f'Unsupported yet: {command}')
         
@@ -151,7 +161,7 @@ class CodeWriter:
         I just rely on the assembler to decide where to store the static variable,
         the value you want is in the M register
         """
-        self.output.append(f'@{self._filename_without_extension}.{index}\n')
+        self.output.append(f'@{self._vm_source_filename_without_extension}.{index}\n')
             
     
     def _accessMemoerySegment(self, segment: str, index: int):
@@ -196,15 +206,17 @@ class CodeWriter:
         self.output.append('D=M\n')
         
         
-    def setFileName(self, filename: str):
+    # Caution: this method is not used !
+    def setFileName(self, vm_source_filename: str):
         """
-        set the file name without extension
+        Set the name of the vm source file without extension which you are parsing.
+        Caution: this method must be called before parsing the vm source file.
         """
-        filename = os.path.basename(filename)
-        if '.' in filename:
-            self._filename_without_extension = os.path.splitext(filename)[0]
+        vm_source_filename = os.path.basename(vm_source_filename)
+        if '.' in vm_source_filename:
+            self._vm_source_filename_without_extension = os.path.splitext(vm_source_filename)[0]
         else:
-            self._filename_without_extension = filename
+            self._vm_source_filename_without_extension = vm_source_filename
             
      
     def writePushPop(self, command: CommandType, segment: str, index: int):
@@ -268,17 +280,17 @@ class CodeWriter:
         """
         (fileName.functionName$label)
         """
-        self.output.append(f"// label {label.split('$')[-1]}\n")
-        self.output.append(f'({label})\n')
+        self.output.append(f"// label {label}\n")
+        self.output.append(f'({self._filename_dot_function_name}${label})\n')
         
     
     def writeGoto(self, label: str):
         """
-        @label
+        @fileName.functionName$label
         0;JMP
         """
-        self.output.append(f"// goto {label.split('$')[-1]}\n")
-        self.output.append('@' + label + '\n')
+        self.output.append(f"// goto {label}\n")
+        self.output.append(f'@{self._filename_dot_function_name}${label}\n')
         self.output.append('0;JMP\n')
         
     
@@ -288,15 +300,15 @@ class CodeWriter:
         M=M-1
         A=M
         D=M
-        @label
+        @fileName.functionName$label
         D;JNE
         """
-        self.output.append(f"// if-goto {label.split('$')[-1]}\n")
+        self.output.append(f"// if-goto {label}\n")
         self.output.append('@SP\n')
         self.output.append('M=M-1\n')
         self.output.append('A=M\n')
         self.output.append('D=M\n')
-        self.output.append(f'@{label}\n')
+        self.output.append(f'@{self._filename_dot_function_name}${label}\n')
         self.output.append('D;JNE\n')
         
          
@@ -306,9 +318,11 @@ class CodeWriter:
         repeat num_locals times: (you can use R13-R15 for temporary storage)
             push constant 0
             
+        function_name: the argument often has the form "filename.functionName"
         """
+        self._filename_dot_function_name = function_name
         self.output.append(f'// function {function_name} {num_locals}\n')
-        self.output.append(f'({self._filename_without_extension}.{function_name})\n')
+        self.output.append(f'({self._filename_dot_function_name})\n')
         # store num_locals in R13
         self.output.append(f'@{num_locals}\n')
         self.output.append('D=A\n')
@@ -317,7 +331,7 @@ class CodeWriter:
         
         # I specify the label name. Hope it will not conflict with other label names that are generated by writeLabel()
         # TODO: How to avoid the conflict?
-        loop_label = f'{self._filename_without_extension}.{function_name}$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_{len(self.output)}.'
+        loop_label = f'{self._filename_dot_function_name}$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_{len(self.output)}'
        
         # loop_label
         self.output.append(f'({loop_label})\n')
@@ -424,6 +438,69 @@ class CodeWriter:
         self.output.append('// end of return\n')
         
      
+    def writeCall(self, function_name: str, num_args: int):
+        """
+        push returnAddress to the stack
+        push LCL to the stack
+        push ARG to the stack
+        push THIS to the stack
+        push THAT to the stack
+        ARG = SP - 5 - num_args
+        LCL = SP
+        goto functio_name
+        (returnAddress)
+        
+        function_name: this argument has the form "filename.function_name"
+        """
+        self.output.append(f'// call {function_name} {num_args}\n')
+        
+        # push return address to the stack
+        # Caution: here self._filename_dot_function_name is the function name of the caller
+        return_address_label = f'{self._filename_dot_function_name}$ret.{len(self.output)}'
+        self.output.append(f'@{return_address_label}\n')
+        self.output.append('D=A\n')
+        self._pushOntoStack()
+        # push LCL to the stack
+        self.output.append('@LCL\n')
+        self.output.append('D=M\n')
+        self._pushOntoStack()
+        # push ARG to the stack
+        self.output.append('@ARG\n')
+        self.output.append('D=M\n')
+        self._pushOntoStack()
+        # push THIS to the stack
+        self.output.append('@THIS\n')
+        self.output.append('D=M\n')
+        self._pushOntoStack()
+        # push THAT to the stack
+        self.output.append('@THAT\n')
+        self.output.append('D=M\n')
+        self._pushOntoStack()
+        
+        # ARG = SP - 5 - num_args
+        self.output.append('@SP\n')
+        self.output.append('D=M\n')
+        self.output.append('@5\n')
+        self.output.append('D=D-A\n')
+        self.output.append(f'@{num_args}\n')
+        self.output.append('D=D-A\n')
+        self.output.append('@ARG\n')
+        self.output.append('M=D\n')
+        
+        # LCL = SP
+        self.output.append('@SP\n')
+        self.output.append('D=M\n')
+        self.output.append('@LCL\n')
+        self.output.append('M=D\n')
+        
+        # goto function_name
+        self.output.append(f'@{function_name}\n')
+        self.output.append('0;JMP\n')
+        
+        # (returnAddress)
+        self.output.append(f'({return_address_label})\n')
+        
+        
     def close(self):
         self.output.append('// add an infinite loop to keep the program running\n')
         self.output.append('(END)\n')
