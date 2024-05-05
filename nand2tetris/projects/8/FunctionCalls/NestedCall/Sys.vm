@@ -11,7 +11,8 @@ function Sys.init 0
 	pop pointer 1
 	call Sys.main 0
 	pop temp 1
-	label LOOP
+// Caution: "label LOOP" should not be inserted 4 spaces before it, or the VMEmulator cannot recognize it 
+label LOOP
 	goto LOOP
 
 // Sets locals 1, 2 and 3 to some values. Leaves locals 0 and 4 unchanged, 

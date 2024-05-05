@@ -22,18 +22,20 @@ class CodeWriter:
         # # call Sys.init
         # self.writeCall('Sys.init', 0)
         
-        # set ARG = SP
-        self.output.append('// set ARG = SP\n')
-        self.output.append('@SP\n')
-        self.output.append('D=M\n')
-        self.output.append('@ARG\n')
-        self.output.append('M=D\n')
-        
         # set LCL = SP
         self.output.append('// set LCL = SP\n')
         self.output.append('@SP\n')
         self.output.append('D=M\n')
         self.output.append('@LCL\n')
+        self.output.append('M=D\n')
+        
+        # set ARG = SP - 5
+        self.output.append('// set ARG = SP - 5\n')
+        self.output.append('@5\n')
+        self.output.append('D=A\n')
+        self.output.append('@SP\n')
+        self.output.append('D=M-D\n')
+        self.output.append('@ARG\n')
         self.output.append('M=D\n')
         
         # goto Sys.init
