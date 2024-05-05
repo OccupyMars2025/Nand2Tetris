@@ -3,7 +3,17 @@
 D=A
 @SP
 M=D
-// call Sys.init
+// set ARG = SP
+@SP
+D=M
+@ARG
+M=D
+// set LCL = SP
+@SP
+D=M
+@LCL
+M=D
+// goto Sys.init
 @Sys.init
 0;JMP
 // function Main.fibonacci 0
@@ -12,10 +22,10 @@ M=D
 D=A
 @R13
 M=D
-(Main.fibonacci$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_14)
+(Main.fibonacci$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_24)
 @R13
 D=M
-@Main.fibonacci$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_14_END
+@Main.fibonacci$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_24_END
 D;JLE
 @SP
 A=M
@@ -24,9 +34,9 @@ M=0
 M=M+1
 @R13
 M=M-1
-@Main.fibonacci$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_14
+@Main.fibonacci$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_24
 0;JMP
-(Main.fibonacci$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_14_END)
+(Main.fibonacci$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_24_END)
 // push argument 0
 @0
 D=A
@@ -55,12 +65,12 @@ D=M
 A=M-1
 D=M-D
 M=-1
-@Main.fibonacci$END_LT_ID_57
+@Main.fibonacci$END_LT_ID_67
 D;JLT
 @SP
 A=M-1
 M=0
-(Main.fibonacci$END_LT_ID_57)
+(Main.fibonacci$END_LT_ID_67)
 // if-goto N_LT_2
 @SP
 M=M-1
@@ -167,7 +177,7 @@ D=M
 A=M-1
 M=M-D
 // call Main.fibonacci 1
-@Main.fibonacci$ret.169
+@Main.fibonacci$ret.179
 D=A
 @SP
 A=M
@@ -216,7 +226,7 @@ D=M
 M=D
 @Main.fibonacci
 0;JMP
-(Main.fibonacci$ret.169)
+(Main.fibonacci$ret.179)
 // push argument 0
 @0
 D=A
@@ -245,7 +255,7 @@ D=M
 A=M-1
 M=M-D
 // call Main.fibonacci 1
-@Main.fibonacci$ret.247
+@Main.fibonacci$ret.257
 D=A
 @SP
 A=M
@@ -294,7 +304,7 @@ D=M
 M=D
 @Main.fibonacci
 0;JMP
-(Main.fibonacci$ret.247)
+(Main.fibonacci$ret.257)
 // add
 @SP
 M=M-1
@@ -362,10 +372,10 @@ A=M
 D=A
 @R13
 M=D
-(Sys.init$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_364)
+(Sys.init$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_374)
 @R13
 D=M
-@Sys.init$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_364_END
+@Sys.init$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_374_END
 D;JLE
 @SP
 A=M
@@ -374,9 +384,9 @@ M=0
 M=M+1
 @R13
 M=M-1
-@Sys.init$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_364
+@Sys.init$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_374
 0;JMP
-(Sys.init$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_364_END)
+(Sys.init$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_374_END)
 // push constant 4
 @4
 D=A
@@ -386,7 +396,7 @@ M=D
 @SP
 M=M+1
 // call Main.fibonacci 1
-@Sys.init$ret.388
+@Sys.init$ret.398
 D=A
 @SP
 A=M
@@ -435,7 +445,7 @@ D=M
 M=D
 @Main.fibonacci
 0;JMP
-(Sys.init$ret.388)
+(Sys.init$ret.398)
 // label END
 (Sys.init$END)
 // goto END

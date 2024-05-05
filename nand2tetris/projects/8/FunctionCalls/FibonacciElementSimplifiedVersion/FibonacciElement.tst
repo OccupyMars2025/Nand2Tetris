@@ -7,12 +7,11 @@
 // FibonacciElement.asm results from translating Main.vm and Sys.vm into
 // a single assembly program, stored in the file FibonacciElement.asm.
 
-load FibonacciElement.asm,
+load FibonacciElementSimplifiedVersion.asm,
 output-file FibonacciElement.out,
 compare-to FibonacciElement.cmp,
 
-// repeat 6000 {
-repeat 2000 {
+repeat 6000 {
 	ticktock;
 }
 

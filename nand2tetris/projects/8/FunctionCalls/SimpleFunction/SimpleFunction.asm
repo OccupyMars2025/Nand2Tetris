@@ -1,13 +1,13 @@
-// function SimpleFunction.SimpleFunction.test 2
-(SimpleFunction.SimpleFunction.SimpleFunction.test)
+// function SimpleFunction.test 2
+(SimpleFunction.test)
 @2
 D=A
 @R13
 M=D
-(SimpleFunction.SimpleFunction.SimpleFunction.test$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_6.)
+(SimpleFunction.test$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_6)
 @R13
 D=M
-@SimpleFunction.SimpleFunction.SimpleFunction.test$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_6._END
+@SimpleFunction.test$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_6_END
 D;JLE
 @SP
 A=M
@@ -16,9 +16,9 @@ M=0
 M=M+1
 @R13
 M=M-1
-@SimpleFunction.SimpleFunction.SimpleFunction.test$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_6.
+@SimpleFunction.test$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_6
 0;JMP
-(SimpleFunction.SimpleFunction.SimpleFunction.test$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_6._END)
+(SimpleFunction.test$LOOP_TO_INITIALIZE_LOCAL_VARIABLES_WITH_ID_6_END)
 // push local 0
 @0
 D=A

@@ -4,19 +4,42 @@ import os
 class CodeWriter:
     def __init__(self, output_file: str):
         self.output_file = output_file
+        self._filename_dot_function_name = ''
+        self._vm_source_filename_without_extension = ''
+        
         self.output = []
+        
         # set SP=261
         self.output.append('// set SP=261\n')
         self.output.append('@261\n')
         self.output.append('D=A\n')
         self.output.append('@SP\n')
         self.output.append('M=D\n')
-        # call Sys.init
-        self.output.append('// call Sys.init\n')
+        
+        # Don't use self.writeCall('Sys.init', 0), because it will push 5 items onto the stack, but Sys.init will never return, 
+        # so the 5 items will never be popped off the stack, refer to nand2tetris/projects/8/FunctionCalls/FibonacciElement/FibonacciElement.cmp, 
+        # you can see that will cause a problem
+        # # call Sys.init
+        # self.writeCall('Sys.init', 0)
+        
+        # set ARG = SP
+        self.output.append('// set ARG = SP\n')
+        self.output.append('@SP\n')
+        self.output.append('D=M\n')
+        self.output.append('@ARG\n')
+        self.output.append('M=D\n')
+        
+        # set LCL = SP
+        self.output.append('// set LCL = SP\n')
+        self.output.append('@SP\n')
+        self.output.append('D=M\n')
+        self.output.append('@LCL\n')
+        self.output.append('M=D\n')
+        
+        # goto Sys.init
+        self.output.append('// goto Sys.init\n')
         self.output.append('@Sys.init\n')
         self.output.append('0;JMP\n')
-        self._filename_dot_function_name = ''
-        self._vm_source_filename_without_extension = ''
 
 
     def writeArithmetic(self, command: str):
@@ -447,7 +470,7 @@ class CodeWriter:
         push THAT to the stack
         ARG = SP - 5 - num_args
         LCL = SP
-        goto functio_name
+        goto function_name
         (returnAddress)
         
         function_name: this argument has the form "filename.function_name"
