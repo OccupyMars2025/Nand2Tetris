@@ -68,6 +68,7 @@ if __name__ == '__main__':
     # python -m my_vm_complete_version.vm_translator  ./ProgramFlow/BasicLoop/BasicLoop.vm
     # python -m my_vm_complete_version.vm_translator  ./ProgramFlow/FibonacciSeries/FibonacciSeries.vm
     # python -m my_vm_complete_version.vm_translator  ./FunctionCalls/SimpleFunction/SimpleFunction.vm
+    # python -m my_vm_complete_version.vm_translator  ./FunctionCalls/StaticsTest
     import sys
     import os
     if len(sys.argv) != 2:
