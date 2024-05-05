@@ -30,5 +30,5 @@
 - [x] (5/1 20:40 - 5/2 19:49) project 7
 - [x] (5/2 19:49 - 5/4 11:14) chapter 8: Virtual Machine II: Control
 ## Attention: Even if the emulator shows "Comparison ended successfully", it doesn't mean your code is correct. In my case, I have added an infinite loop to the end of the generated assembly code, but it doesn't work, the PC value becomes absurdly large where there is no assembly code. Refer to https://github.com/OccupyMars2025/Nand2Tetris/issues/4
-- [ ] (5/4 11:14 - ) project 8 
+- [x] (5/4 11:14 - 5/5 17:27) project 8 
 
